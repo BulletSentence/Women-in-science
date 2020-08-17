@@ -12,6 +12,9 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^0.1.2
+  auto_size_text: ^2.1.0
+  http: ^0.12.2
+  share: ^0.6.4+3
 
 dev_dependencies:
   flutter_test:
