@@ -24,7 +24,15 @@ class QuizController {
   }
 
   void nextQuestion(){
-    
+    questionIndex = ++questionIndex % _questionBank.length;
+    _shiftAnswer = _random.nextBool();
   }
 
+  String getQuestion() {
+    return _questionBank[questionIndex].question;
+  }
+
+  String getAnswer1() {
+    return _shiftAnswer ? _questionBank[questionIndex].answer1 : _questionBank[questionIndex].answer2;
+  }
 }
