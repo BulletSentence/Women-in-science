@@ -35,4 +35,14 @@ class QuizController {
   String getAnswer1() {
     return _shiftAnswer ? _questionBank[questionIndex].answer1 : _questionBank[questionIndex].answer2;
   }
+
+  String getAnswer2() {
+    return _shiftAnswer ? _questionBank[questionIndex].answer2 : _questionBank[questionIndex].answer1;
+  }
+
+  bool correctAnswer(String answer) {
+    var correct = _questionBank[questionIndex].answer1 == answer;
+    hitNumber = hitNumber + (correct ? 1 : 0);
+    return correct;
+  }
 }
