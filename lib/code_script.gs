@@ -18,3 +18,7 @@ function doGet(request) {
   var json = JSON.stringify(result);
   return ContentService.createTextOutput(json).setMimeType(ContentService.MimeType.JSON);
 }
+
+
+
+// HTTP link: https://script.google.com/macros/s/AKfycby24Ae-6WrycXleG9fwKdyVmcf520qTyuxJFU4JZCalnv254qtN/exec
