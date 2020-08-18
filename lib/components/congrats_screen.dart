@@ -33,26 +33,32 @@ class FinishDialog {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(
-                'Congratulations!',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
+              Center(
+                child: Text(
+                  hitNumber < (questionNumber/2) ? "Sorry man, you failed" : 'Congratulations!',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
               const SizedBox(height: 8),
-              Text(
-                'Your Grade: $hitNumber',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
+              Center(
+                child: Text(
+                  'Your Grade: $hitNumber',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
 
+                  ),
                 ),
               ),
-              Text(
-                'Wanna try again?',
-                style: TextStyle(
+              Center(
+                child: Text(
+                  'Wanna try again?',
+                  style: TextStyle(
 
+                  ),
                 ),
               ),
             ],
