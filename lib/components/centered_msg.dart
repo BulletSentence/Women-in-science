@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 
-class CenteredMsg extends StatelessWidget {
+class CenteredMessage extends StatelessWidget {
   final String message;
   final IconData icon;
   final double iconSize;
   final double fontSize;
 
-  const CenteredMsg({
-    Key key,
-    this.message,
-    this.icon,
-    this.iconSize = 60.0,
-    this.fontSize = 12.0
-  }) : super(key: key);
+  CenteredMessage(
+      this.message, {
+        this.icon,
+        this.iconSize = 64.0,
+        this.fontSize = 14.0,
+      });
 
   @override
   Widget build(BuildContext context) {

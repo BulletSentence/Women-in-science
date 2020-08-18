@@ -53,7 +53,7 @@ class _QuizPageState extends State<QuizPage> {
     if (_loading) return CenteredCircularProgress();
 
     if (_controller.questionsNumber == 0)
-      return CenteredMsg(
+      return CenteredMessage(
         'Sem questões',
         icon: Icons.warning,
       );
