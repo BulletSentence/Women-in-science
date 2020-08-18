@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:httprequestapp/main.dart';
 import 'package:httprequestapp/models/getQuestion_module.dart';
 
 class ResultDialog {
@@ -30,18 +31,19 @@ class ResultDialog {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(
-                question.question,
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+              Center(
+                child: Text(
+                  question.question,
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
               const SizedBox(height: 8),
               Center(
                 child: Text(
-                  correct ? 'You got!' : 'No way dude, the Correct is:',
+                  correct ? 'You got it!' : 'No way dude, the Correct is:',
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -54,6 +56,7 @@ class ResultDialog {
                 child: Text(
                   correct ? " " : question.answer1,
                   style: TextStyle(
+                    color: correct ? Colors.white : secondary_text_color ,
                   ),
                 ),
               ),
@@ -61,7 +64,7 @@ class ResultDialog {
           ),
           actions: [
             FlatButton(
-              child: const Text('Next'),
+              child: const Text('Next Question'),
               onPressed: () {
                 Navigator.of(context).pop();
                 onNext();

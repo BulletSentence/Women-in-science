@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:httprequestapp/main.dart';
 import 'package:httprequestapp/pages/game_page.dart';
+
 
 class FinishDialog {
   static Future show(
@@ -13,17 +15,16 @@ class FinishDialog {
       barrierDismissible: false,
       builder: (context) {
         return AlertDialog(
-          backgroundColor: Colors.green.shade300,
+          backgroundColor: Colors.white,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(10.0),
             ),
           ),
           title: CircleAvatar(
-            backgroundColor: Colors.green,
             maxRadius: 35.0,
             child: Icon(
-              hitNumber < 6 ? Icons.warning : Icons.favorite,
+              hitNumber < (questionNumber/2) ? Icons.warning : Icons.favorite,
               color: Colors.grey.shade900,
             ),
           ),
@@ -36,7 +37,6 @@ class FinishDialog {
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
                 ),
               ),
               const SizedBox(height: 8),
@@ -45,13 +45,13 @@ class FinishDialog {
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
+
                 ),
               ),
               Text(
                 'Wanna try again?',
                 style: TextStyle(
-                  color: Colors.white70,
+
                 ),
               ),
             ],
