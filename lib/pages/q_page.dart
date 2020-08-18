@@ -1,48 +1,156 @@
-import 'dart:math';
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
+import 'package:httprequestapp/components/centered_loading_asset.dart';
+import 'package:httprequestapp/components/centered_msg.dart';
+import 'package:httprequestapp/controllers/game_controller.dart';
 
-import 'package:httprequestapp/models/question.dart';
-import 'package:httprequestapp/services/q_api.dart';
 
-class QuizController {
-  List<Question> _questionBank;
+class QuizPage extends StatefulWidget {
+  @override
+  _QuizPageState createState() => _QuizPageState();
+}
 
-  Random _random = new Random();
-  int questionIndex = 0;
-  bool _shiftAnswer;
-  int hitNumber = 0;
+class _QuizPageState extends State<QuizPage> {
+  final _controller = QuizController();
+  List<Widget> _scoreKeeper = [];
 
-  int get questionsNumber => _questionBank.length ?? 0;
-  Question get question => _questionBank[questionIndex];
+  bool _loading = true;
 
-  Future<void> initialize() async {
-    questionIndex = 0;
-    hitNumber = 0;
-    _questionBank = await Q_API.fetch();
-    print('Number of questions :${_questionBank.length}');
-    _questionBank.shuffle();
-    _shiftAnswer = _random.nextBool();
+  @override
+  void initState() {
+    super.initState();
+    _initialize();
   }
 
-  void nextQuestion(){
-    questionIndex = ++questionIndex % _questionBank.length;
-    _shiftAnswer = _random.nextBool();
+  Future<void> _initialize() async {
+    await _controller.initialize();
+
+    setState(() {
+      _loading = false;
+    });
   }
 
-  String getQuestion() {
-    return _questionBank[questionIndex].question;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.grey.shade900,
+        title: Text('QUIZ COVID-19 ( ${_scoreKeeper.length}/${_controller.questionsNumber} )'),
+        centerTitle: true,
+        elevation: 0.0,
+      ),
+      backgroundColor: Colors.grey.shade900,
+      body: SafeArea(
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20.0),
+          child: _buildQuiz(),
+        ),
+      ),
+    );
   }
 
-  String getAnswer1() {
-    return _shiftAnswer ? _questionBank[questionIndex].answer1 : _questionBank[questionIndex].answer2;
+  _buildQuiz() {
+    if (_loading) return CenteredCircularProgress();
+
+    if (_controller.questionsNumber == 0)
+      return CenteredMsg(
+        'Sem questões',
+        icon: Icons.warning,
+      );
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: <Widget>[
+        _buildQuestion(_controller.getQuestion()),
+        _buildAnswerButton(_controller.getAnswer1()),
+        _buildAnswerButton(_controller.getAnswer2()),
+        _buildScoreKeeper(),
+      ],
+    );
   }
 
-  String getAnswer2() {
-    return _shiftAnswer ? _questionBank[questionIndex].answer2 : _questionBank[questionIndex].answer1;
+  _buildQuestion(String question) {
+    return Expanded(
+      flex: 5,
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 16.0),
+        child: Center(
+          child: Text(
+            question,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 25.0,
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ),
+    );
   }
 
-  bool correctAnswer(String answer) {
-    var correct = _questionBank[questionIndex].answer1 == answer;
-    hitNumber = hitNumber + (correct ? 1 : 0);
-    return correct;
+  _buildAnswerButton(String answer) {
+    return Expanded(
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 8.0),
+        child: GestureDetector(
+          child: Container(
+            padding: EdgeInsets.all(4.0),
+            color: Colors.blue,
+            child: Center(
+              child: AutoSizeText(
+                answer,
+                maxLines: 2,
+                minFontSize: 10.0,
+                maxFontSize: 32.0,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20.0,
+                ),
+              ),
+            ),
+          ),
+          onTap: () {
+            bool correct = _controller.correctAnswer(answer);
+
+            ResultDialog.show(
+              context,
+              question: _controller.question,
+              correct: correct,
+              onNext: () {
+                setState(() {
+                  _scoreKeeper.add(
+                    Icon(
+                      correct ? Icons.check : Icons.close,
+                      color: correct ? Colors.green : Colors.red,
+                    ),
+                  );
+
+                  if (_scoreKeeper.length < _controller.questionsNumber) {
+                    _controller.nextQuestion();
+                  } else {
+                    FinishDialog.show(
+                        context,
+                        hitNumber: _controller.hitNumber,
+                        questionNumber:  _controller.questionsNumber
+                    );
+                  }
+                });
+              },
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  _buildScoreKeeper() {
+    return Expanded(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: _scoreKeeper,
+      ),
+    );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:httprequestapp/pages/q_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -7,11 +8,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "App",
+      title: 'Game',
       theme: ThemeData(
-        primarySwatch: Colors.red,
+        primarySwatch: Colors.blue,
       ),
-      home: null,
+      home: QuizPage(),
     );
   }
 }
