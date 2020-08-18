@@ -22,10 +22,11 @@ class FinishDialog {
             ),
           ),
           title: CircleAvatar(
+            backgroundColor: hitNumber < (questionNumber/2) ? Colors.red : Colors.green,
             maxRadius: 35.0,
             child: Icon(
               hitNumber < (questionNumber/2) ? Icons.warning : Icons.favorite,
-              color: Colors.grey.shade900,
+              color: hitNumber < (questionNumber/2) ? Colors.grey.shade900 : Colors.white,
             ),
           ),
           content: Column(
