@@ -17,7 +17,7 @@ class QuizController {
   Future<void> initialize() async {
     questionIndex = 0;
     hitNumber = 0;
-    _questionBank = await Q_API.fetch();
+    _questionBank = await HTTPApi.fetch();
     print('Number of questions: ${_questionBank.length}');
     _questionBank.shuffle();
     _shiftAnswer = _random.nextBool();

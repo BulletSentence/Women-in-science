@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:httprequestapp/pages/q_page.dart';
-import 'package:share/share.dart';
 
 class FinishDialog {
   static Future show(
@@ -58,12 +57,6 @@ class FinishDialog {
             ],
           ),
           actions: [
-            FlatButton(
-              child: const Text('Share'),
-              onPressed: () {
-                Share.share('I graded $hitNumber');
-              },
-            ),
             FlatButton(
               child: const Text('Play Again'),
               onPressed: () {

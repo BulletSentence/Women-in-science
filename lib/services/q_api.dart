@@ -2,10 +2,10 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:httprequestapp/models/question.dart';
 
-class Q_API {
+class HTTPApi {
   static Future<List<Question>> fetch() async {
     try {
-      var url = 'https://script.google.com/macros/s/AKfycby24Ae-6WrycXleG9fwKdyVmcf520qTyuxJFU4JZCalnv254qtN/exec';
+      var url = 'https://script.google.com/macros/s/AKfycbxI628yjt1RNE9ENfMs7QLRdZwUylRwUbdFwFSaMMvQtR01rfs/exec';
       var response = await http.get(url);
 
       if (response.statusCode == 200) {
