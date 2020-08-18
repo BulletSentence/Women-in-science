@@ -7,11 +7,11 @@ class CenteredMessage extends StatelessWidget {
   final double fontSize;
 
   CenteredMessage(
-      this.message, {
-        this.icon,
-        this.iconSize = 64.0,
-        this.fontSize = 14.0,
-      });
+    this.message, {
+    this.icon,
+    this.iconSize = 64.0,
+    this.fontSize = 14.0,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class CenteredMessage extends StatelessWidget {
             child: Icon(
               icon,
               size: iconSize,
-              color: Colors.black26,
+              color: Colors.white,
             ),
             visible: icon != null,
           ),
@@ -35,7 +35,7 @@ class CenteredMessage extends StatelessWidget {
               style: TextStyle(
                 fontSize: fontSize,
                 fontWeight: FontWeight.w500,
-                color: Colors.black26,
+                color: Colors.white,
               ),
             ),
           ),

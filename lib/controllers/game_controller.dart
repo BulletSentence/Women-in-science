@@ -1,7 +1,7 @@
 import 'dart:math';
 
-import 'package:httprequestapp/models/question.dart';
-import 'package:httprequestapp/services/q_api.dart';
+import 'package:httprequestapp/models/getQuestion_module.dart';
+import 'package:httprequestapp/services/game_api_http.dart';
 
 class QuizController {
   List<Question> _questionBank;
@@ -17,7 +17,7 @@ class QuizController {
   Future<void> initialize() async {
     questionIndex = 0;
     hitNumber = 0;
-    _questionBank = await HTTPApi.fetch();
+    _questionBank = await QuizApi.fetch();
     print('Number of questions: ${_questionBank.length}');
     _questionBank.shuffle();
     _shiftAnswer = _random.nextBool();

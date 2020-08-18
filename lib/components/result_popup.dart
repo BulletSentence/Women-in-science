@@ -1,30 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:httprequestapp/pages/q_page.dart';
+import 'package:httprequestapp/models/getQuestion_module.dart';
 
-class FinishDialog {
+class ResultDialog {
   static Future show(
-      BuildContext context, {
-        @required int hitNumber,
-        @required int questionNumber,
-      }) {
+    BuildContext context, {
+    @required Question question,
+    @required bool correct,
+    @required Function onNext,
+  }) {
     return showDialog<void>(
       context: context,
       barrierDismissible: false,
       builder: (context) {
         return AlertDialog(
-          backgroundColor: Colors.grey.shade900,
+          backgroundColor: Colors.white,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(10.0),
             ),
           ),
           title: CircleAvatar(
-            backgroundColor: Colors.green,
-            maxRadius: 35.0,
+            backgroundColor: correct ? Colors.green : Colors.red,
             child: Icon(
-              hitNumber < 6 ? Icons.warning : Icons.favorite,
-              color: Colors.grey.shade900,
+              correct ? Icons.check : Icons.close,
+              color: Colors.white,
             ),
           ),
           content: Column(
@@ -32,7 +31,7 @@ class FinishDialog {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                'Congratulations!',
+                question.question,
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -41,35 +40,27 @@ class FinishDialog {
               ),
               const SizedBox(height: 8),
               Text(
-                'You got $hitNumber of $questionNumber!',
+                correct ? 'You got!' : 'No way dude, the Correct is:',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                  color: correct ? Colors.green : Colors.red,
                 ),
               ),
               Text(
-                'What about another round?',
+                question.answer1,
                 style: TextStyle(
-                  color: Colors.white70,
+                  color: Colors.white,
                 ),
               ),
             ],
           ),
           actions: [
             FlatButton(
-              child: const Text('Play Again'),
+              child: const Text('Next'),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => QuizPage()),
-                );
-              },
-            ),
-            FlatButton(
-              child: const Text('SAIR'),
-              onPressed: () {
-                SystemNavigator.pop();
+                Navigator.of(context).pop();
+                onNext();
               },
             )
           ],

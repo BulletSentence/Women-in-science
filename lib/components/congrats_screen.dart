@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:httprequestapp/models/question.dart';
+import 'package:flutter/services.dart';
+import 'package:httprequestapp/pages/game_page.dart';
 
-class ResultDialog {
+class FinishDialog {
   static Future show(
     BuildContext context, {
-    @required Question question,
-    @required bool correct,
-    @required Function onNext,
-  })
-  {
+    @required int hitNumber,
+    @required int questionNumber,
+  }) {
     return showDialog<void>(
       context: context,
       barrierDismissible: false,
       builder: (context) {
         return AlertDialog(
-          backgroundColor: Colors.grey.shade900,
+          backgroundColor: Colors.green.shade300,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(10.0),
             ),
           ),
           title: CircleAvatar(
-            backgroundColor: correct ? Colors.green : Colors.red,
+            backgroundColor: Colors.green,
+            maxRadius: 35.0,
             child: Icon(
-              correct ? Icons.check : Icons.close,
+              hitNumber < 6 ? Icons.warning : Icons.favorite,
               color: Colors.grey.shade900,
             ),
           ),
@@ -32,7 +32,7 @@ class ResultDialog {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                question.question,
+                'Congratulations!',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -41,15 +41,15 @@ class ResultDialog {
               ),
               const SizedBox(height: 8),
               Text(
-                correct ? 'You Got it!' : 'Failed:',
+                'Your Grade: $hitNumber',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: correct ? Colors.green : Colors.red,
+                  color: Colors.white,
                 ),
               ),
               Text(
-                question.answer1,
+                'Wanna try again?',
                 style: TextStyle(
                   color: Colors.white70,
                 ),
@@ -58,10 +58,18 @@ class ResultDialog {
           ),
           actions: [
             FlatButton(
-              child: const Text('NEXT'),
+              child: const Text('Play Again'),
               onPressed: () {
-                Navigator.of(context).pop();
-                onNext();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => QuizPage()),
+                );
+              },
+            ),
+            FlatButton(
+              child: const Text('QUIT'),
+              onPressed: () {
+                SystemNavigator.pop();
               },
             )
           ],
@@ -70,3 +78,4 @@ class ResultDialog {
     );
   }
 }
+

@@ -1,11 +1,10 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:httprequestapp/components/centered_loading_asset.dart';
-import 'package:httprequestapp/components/centered_msg.dart';
-import 'package:httprequestapp/components/finish_dial.dart';
-import 'package:httprequestapp/components/result_dialog.dart';
+import 'package:httprequestapp/components/loading_spin.dart';
+import 'package:httprequestapp/components/popup.dart';
+import 'package:httprequestapp/components/congrats_screen.dart';
+import 'package:httprequestapp/components/result_popup.dart';
 import 'package:httprequestapp/controllers/game_controller.dart';
-
 
 class QuizPage extends StatefulWidget {
   @override
@@ -36,12 +35,12 @@ class _QuizPageState extends State<QuizPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.grey.shade900,
-        title: Text('QUIZ COVID-19 ( ${_scoreKeeper.length}/${_controller.questionsNumber} )'),
+        backgroundColor: Colors.white,
+        title: Text('Women in Science Game'),
         centerTitle: true,
         elevation: 0.0,
       ),
-      backgroundColor: Colors.grey.shade900,
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.0),
@@ -56,7 +55,7 @@ class _QuizPageState extends State<QuizPage> {
 
     if (_controller.questionsNumber == 0)
       return CenteredMessage(
-        'Sem questões',
+        'No Questions! :(',
         icon: Icons.warning,
       );
 
@@ -98,7 +97,7 @@ class _QuizPageState extends State<QuizPage> {
         child: GestureDetector(
           child: Container(
             padding: EdgeInsets.all(4.0),
-            color: Colors.blue,
+            color: Colors.yellow,
             child: Center(
               child: AutoSizeText(
                 answer,
@@ -133,9 +132,9 @@ class _QuizPageState extends State<QuizPage> {
                     _controller.nextQuestion();
                   } else {
                     FinishDialog.show(
-                        context,
-                        hitNumber: _controller.hitNumber,
-                        questionNumber:  _controller.questionsNumber
+                      context,
+                      hitNumber: _controller.hitNumber,
+                      questionNumber:  _controller.questionsNumber
                     );
                   }
                 });
