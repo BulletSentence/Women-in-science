@@ -39,18 +39,22 @@ class ResultDialog {
                 ),
               ),
               const SizedBox(height: 8),
-              Text(
-                correct ? 'You got!' : 'No way dude, the Correct is:',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: correct ? Colors.green : Colors.red,
+              Center(
+                child: Text(
+                  correct ? 'You got!' : 'No way dude, the Correct is:',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: correct ? Colors.green : Colors.red,
+                  ),
                 ),
               ),
-              Text(
-                question.answer1,
-                style: TextStyle(
-                  color: Colors.white,
+              const SizedBox(height: 10),
+              Center(
+                child: Text(
+                  correct ? " " : question.answer1,
+                  style: TextStyle(
+                  ),
                 ),
               ),
             ],

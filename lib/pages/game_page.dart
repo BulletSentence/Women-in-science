@@ -5,6 +5,7 @@ import 'package:httprequestapp/components/popup.dart';
 import 'package:httprequestapp/components/congrats_screen.dart';
 import 'package:httprequestapp/components/result_popup.dart';
 import 'package:httprequestapp/controllers/game_controller.dart';
+import 'package:httprequestapp/main.dart';
 
 class QuizPage extends StatefulWidget {
   @override
@@ -35,7 +36,6 @@ class _QuizPageState extends State<QuizPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
         title: Text('Women in Science Game'),
         centerTitle: true,
         elevation: 0.0,
@@ -82,7 +82,6 @@ class _QuizPageState extends State<QuizPage> {
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 25.0,
-              color: Colors.white,
             ),
           ),
         ),
@@ -97,7 +96,7 @@ class _QuizPageState extends State<QuizPage> {
         child: GestureDetector(
           child: Container(
             padding: EdgeInsets.all(4.0),
-            color: Colors.yellow,
+            color: primary_Color_dark,
             child: Center(
               child: AutoSizeText(
                 answer,
