@@ -2,6 +2,8 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:httprequestapp/components/centered_loading_asset.dart';
 import 'package:httprequestapp/components/centered_msg.dart';
+import 'package:httprequestapp/components/finish_dial.dart';
+import 'package:httprequestapp/components/result_dialog.dart';
 import 'package:httprequestapp/controllers/game_controller.dart';
 
 
