@@ -96,7 +96,10 @@ class _QuizPageState extends State<QuizPage> {
         child: GestureDetector(
           child: Container(
             padding: EdgeInsets.all(4.0),
-            color: primary_Color_dark,
+            decoration: BoxDecoration(
+                color: primary_Color_dark,
+                border: Border.all(),
+                borderRadius: BorderRadius.all(Radius.circular(20))),
             child: Center(
               child: AutoSizeText(
                 answer,
@@ -130,11 +133,9 @@ class _QuizPageState extends State<QuizPage> {
                   if (_scoreKeeper.length < _controller.questionsNumber) {
                     _controller.nextQuestion();
                   } else {
-                    FinishDialog.show(
-                      context,
-                      hitNumber: _controller.hitNumber,
-                      questionNumber:  _controller.questionsNumber
-                    );
+                    FinishDialog.show(context,
+                        hitNumber: _controller.hitNumber,
+                        questionNumber: _controller.questionsNumber);
                   }
                 });
               },
