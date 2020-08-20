@@ -1,6 +1,9 @@
 ## Women in Science Game
 In progress...
 
+## Want to help me? :heart:
+ <a target="_blank" href="https://donorbox.org/buy-me-a-coffee-21?default_interval=o"><img src="https://i1.wp.com/www.kitsilano.ca/wp-content/uploads/2020/04/kofi.png?ssl=1" height="40"/></a>
+
 ### Colors for the APP
 ![Collor Pattern](https://user-images.githubusercontent.com/37451620/90547987-acc72b80-e162-11ea-9948-75a27bbbc352.JPG)
 
