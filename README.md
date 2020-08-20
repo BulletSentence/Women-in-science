@@ -1,5 +1,6 @@
-## :woman::speech_balloon: Women in Science Game
+### :woman::speech_balloon: Women in Science Game
 This project is a prototype of an application to emphasize the importance of women within science and show their achievements within academia
+
 ---
 
 ## :heart: Want to help me? 
