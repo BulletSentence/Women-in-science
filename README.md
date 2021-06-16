@@ -3,7 +3,6 @@ This project is a prototype of an application to emphasize the importance of wom
 
 (Project stopped for a while)
 
-
 ---
 
 ## :heart: Want to help me? 
@@ -18,7 +17,3 @@ This project is a prototype of an application to emphasize the importance of wom
 
 ### :iphone: App Screenshots
 <img src="https://user-images.githubusercontent.com/37451620/90559299-c58c0d00-e173-11ea-8bc2-2f4f1dbc387d.jpg" width="325"/> <img src="https://user-images.githubusercontent.com/37451620/90559306-c91f9400-e173-11ea-88cb-e12769b82ce9.jpg" width="325"/> 
-
-
-
-
